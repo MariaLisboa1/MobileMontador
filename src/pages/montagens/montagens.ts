@@ -20,28 +20,25 @@ import { MoovieProvider } from '../../providers/moovie/moovie';
 
 
 export class MontagensPage {
-  public user: string = "05"
+  public user: any = '05'
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     private _movieProvider: MoovieProvider,
-    
+
   ) {
   }
-  // this.roundService.getRounds(codEquipe).subscribe(result => {
-  //   this.ronda = result.json()['data'];
+
   ionViewDidLoad() {
     this._movieProvider.getLatesMovies(this.user).subscribe(
-      result=>{
-        this.user = result.json()['data']
-        console.log('data')
-        // const response = (data as any)
-        // const objeto_retorno = JSON.parse(response._body);
-        // console.log(objeto_retorno);
-      },error=>{        
+      data => {
+        const response = (data as any)
+        const objeto_retorno = JSON.parse(response._body);
+        console.log(objeto_retorno);
+      }, error => {
         console.log('this.user')
         console.log(error);
-        
+
       }
     )
   }
